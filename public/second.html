@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Our Memories 💗</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        /* MAIN BACKGROUND */
+        .background {
+            min-height: 100vh;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            padding: 30px 20px 50px;
+        }
+
+        /* MAIN BACKGROUND IMAGE */
+        .background > img {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* HEADING */
+        .background h1 {
+            position: relative;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+
+            border: 2px solid whitesmoke;
+            padding: 8px 25px;
+            margin: 0;
+
+            text-align: center;
+            width: fit-content;
+            max-width: 90%;
+
+            border-radius: 50px;
+            font-style: oblique;
+            color: white;
+
+            text-shadow: 0 2px 5px black;
+        }
+
+        /* DATE */
+        .date {
+            position: relative;
+            margin: 20px 0 0 auto;
+
+            border: 2px solid whitesmoke;
+            font-size: larger;
+
+            width: fit-content;
+
+            padding: 5px 20px;
+            border-radius: 50px;
+
+            color: white;
+
+            background: rgba(0, 0, 0, 0.15);
+
+            text-shadow: 0 2px 5px black;
+        }
+
+        /* PHOTO GALLERY */
+        .gallery {
+            position: relative;
+
+            width: 90%;
+            max-width: 900px;
+
+            margin: 40px auto;
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 35px 30px;
+        }
+
+        /* EACH PHOTO + CAPTION */
+        .memory {
+            text-align: center;
+
+            padding: 15px;
+
+            border-radius: 25px;
+
+            background: rgba(255, 255, 255, 0.08);
+
+            backdrop-filter: blur(2px);
+
+            border: 1px solid rgba(255, 255, 255, 0.25);
+
+            transition:
+                transform 0.4s ease,
+                background 0.4s ease,
+                box-shadow 0.4s ease;
+        }
+
+        /* HOVER CARD */
+        .memory:hover {
+            transform: translateY(-8px);
+
+            background: rgba(255, 255, 255, 0.13);
+
+            box-shadow:
+                0 0 15px rgba(255, 255, 255, 0.6),
+                0 0 30px rgba(255, 105, 180, 0.5);
+        }
+
+        /* PHOTOS */
+        .memory img {
+            width: 100%;
+
+            height: 480px;
+
+            object-fit: contain;
+
+            display: block;
+
+            border-radius: 25px;
+
+            transition:
+                transform 0.4s ease,
+                box-shadow 0.4s ease;
+        }
+
+        /* IMAGE HOVER */
+        .memory img:hover {
+            transform: scale(1.06);
+
+            box-shadow:
+                0 0 15px white,
+                0 0 30px pink,
+                0 0 45px rgba(255, 105, 180, 0.5);
+        }
+
+        /* CAPTION */
+        .memory p {
+            color: white;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            line-height: 1.5;
+
+            margin: 12px 5px 0;
+
+            text-shadow:
+                0 2px 5px black,
+                0 0 5px black;
+        }
+
+        /* FINAL MESSAGE */
+        .final-message {
+            position: relative;
+
+            width: 90%;
+            max-width: 800px;
+
+            margin: 50px auto 25px;
+
+            padding: 20px;
+
+            text-align: center;
+
+            color: white;
+
+            font-size: 19px;
+
+            font-weight: bold;
+
+            line-height: 1.6;
+
+            background: rgba(0, 0, 0, 0.15);
+
+            border: 2px solid rgba(255, 255, 255, 0.7);
+
+            border-radius: 25px;
+
+            text-shadow:
+                0 2px 5px black,
+                0 0 5px black;
+        }
+
+        /* LAST BUTTON */
+        .next-button {
+            display: block;
+
+            width: fit-content;
+
+            margin: 25px auto 20px;
+
+            padding: 8px 16px;
+
+            border: none;
+
+            border-radius: 30px;
+
+            background: rgb(220, 20, 100);
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            text-decoration: none;
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease,
+                background 0.3s ease;
+        }
+
+        /* BUTTON HOVER */
+        .next-button:hover {
+            transform: scale(1.05);
+
+            background: rgb(180, 10, 80);
+
+            box-shadow:
+                0 0 15px pink,
+                0 0 30px white;
+        }
+
+        /* MOBILE RESPONSIVE DESIGN */
+        @media (max-width: 600px) {
+
+            .background {
+                padding: 20px 10px 40px;
+            }
+
+            /* HEADING */
+            .background h1 {
+                font-size: 22px;
+
+                padding: 8px 15px;
+
+                max-width: 95%;
+            }
+
+            /* DATE */
+            .date {
+                margin: 20px auto 0;
+
+                font-size: 14px;
+
+                padding: 7px 14px;
+            }
+
+            /* GALLERY */
+            .gallery {
+                width: 96%;
+
+                grid-template-columns: 1fr 1fr;
+
+                gap: 20px 12px;
+
+                margin-top: 30px;
+            }
+
+            /* MEMORY CARD */
+            .memory {
+                padding: 8px;
+
+                border-radius: 18px;
+            }
+
+            /* MOBILE PHOTOS */
+            .memory img {
+                height: 340px;
+
+                object-fit: contain;
+
+                border-radius: 18px;
+            }
+
+            /* MOBILE HOVER */
+            .memory img:hover {
+                transform: scale(1.04);
+            }
+
+            /* MOBILE CAPTION */
+            .memory p {
+                font-size: 13px;
+
+                line-height: 1.4;
+
+                margin-top: 8px;
+            }
+
+            /* FINAL MESSAGE */
+            .final-message {
+                width: 95%;
+
+                font-size: 15px;
+
+                padding: 15px;
+
+                margin-top: 35px;
+            }
+
+            /* MOBILE BUTTON */
+            .next-button {
+                font-size: 14px;
+
+                padding: 8px 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="background">
+
+        <!-- MAIN BACKGROUND IMAGE -->
+
+        <img src="blue.jpeg" alt="Background">
+
+        <!-- HEADING -->
+
+        <h1>Our Memories 💗</h1>
+
+        <!-- DATE -->
+
+        <p class="date">12 October 2007</p>
+
+        <!-- PHOTO GALLERY -->
+
+        <div class="gallery">
+
+            <!-- MEMORY 1 -->
+
+            <div class="memory">
+
+                <img src="first.jpeg" alt="Memory 1">
+
+                <p>
+                    “Little you, on your very first birthday. 😘💕”
+                </p>
+
+            </div>
+
+            <!-- MEMORY 2 -->
+
+            <div class="memory">
+
+                <img src="rice.jpeg" alt="Memory 2">
+
+                <p>
+                    “The day your beautiful name was chosen. 🥰💝”
+                </p>
+
+            </div>
+
+            <!-- MEMORY 3 -->
+
+            <div class="memory">
+
+                <img src="small.jpeg" alt="Memory 3">
+
+                <p>
+                    “A sweet childhood memory filled with smiles and joy. 🎂💖”
+                </p>
+
+            </div>
+
+            <!-- MEMORY 4 -->
+
+            <div class="memory">
+
+                <img src="cute.jpeg" alt="Memory 4">
+
+                <p>
+                    “How can someone look this cute while eating 😁💌”
+                </p>
+
+            </div>
+
+            <!-- MEMORY 5 -->
+
+            <div class="memory">
+
+                <img src="angel.jpeg" alt="Memory 5">
+
+                <p>
+                    “The first picture you sent me.....<br>
+                    and the one I proudly showed my mom. 😍❣️”
+                </p>
+
+            </div>
+
+            <!-- MEMORY 6 -->
+
+            <div class="memory">
+
+                <img src="her.jpeg" alt="Memory 6">
+
+                <p>
+                    “One last school-day memory,
+                    forever worth remembering. 🎓❤️”
+                </p>
+
+            </div>
+
+            <!-- MEMORY 7 -->
+
+            <div class="memory">
+
+                <img src="cake.jpeg" alt="Memory 7">
+
+                <p>
+                    “A cake made for a beautiful 18th birthday. 🎂💙”
+                </p>
+
+            </div>
+
+            <!-- MEMORY 8 -->
+
+            <div class="memory">
+
+                <img src="born.jpeg" alt="Memory 8">
+
+                <p>
+                    “Eighteen years of becoming the beautiful soul
+                    you are today. 💗✨”
+                </p>
+
+            </div>
+
+            <!-- MEMORY 9 -->
+
+            <div class="memory">
+
+                <img src="holy.jpeg" alt="Memory 9">
+
+                <p>
+                    “Colors on your face,<br>
+                    laughter in your heart,<br>
+                    and beautiful memories with the ones you love. 🌈💓”
+                </p>
+
+            </div>
+
+            <!-- MEMORY 10 -->
+
+            <div class="memory">
+
+                <img src="tour.jpeg" alt="Memory 10">
+
+                <p>
+                    “A beautiful girl,<br>
+                    a beautiful place,<br>
+                    and a memory worth keeping forever. ✨💞”
+                </p>
+
+            </div>
+
+            <!-- MEMORY 11 -->
+
+            <div class="memory">
+
+                <img src="draw.jpeg" alt="Memory 11">
+
+                <p>
+                    “Behind every beautiful stroke is a beautiful soul. ✨🩷”
+                </p>
+
+            </div>
+
+            <!-- MEMORY 12 -->
+
+            <div class="memory">
+
+                <img src="mom.jpeg" alt="Memory 12">
+
+                <p>
+                    “The woman who gave you your first love,
+                    your first smile,
+                    and the beautiful heart I fell in love with. 😗💘”
+                </p>
+
+            </div>
+
+            <!-- MEMORY 13 -->
+
+            <div class="memory">
+
+                <img src="dad.jpeg" alt="Memory 13">
+
+                <p>
+                    “The first man who taught you how to be strong,
+                    loved you unconditionally,
+                    and helped shape the beautiful woman
+                    you are today. 🥰💝”
+                </p>
+
+            </div>
+
+            <!-- MEMORY 14 -->
+
+            <div class="memory">
+
+                <img src="bro.jpeg" alt="Memory 14">
+
+                <p>
+                    “A bond made of childhood memories,
+                    endless teasing,
+                    and a love that will always stay. 😃🤍”
+                </p>
+
+            </div>
+
+            <!-- MEMORY 15 -->
+
+            <div class="memory">
+
+                <img src="love.jpeg" alt="Memory 15">
+
+                <p>
+                    “The one who found you,<br>
+                    chose you,<br>
+                    and fell for you with all my heart. 💘🥰”
+                </p>
+
+            </div>
+
+            <!-- MEMORY 16 -->
+
+            <div class="memory">
+
+                <img src="both.jpeg" alt="Memory 16">
+
+                <p>
+                    “Two hearts, one beautiful story.....<br>
+                    and I’m grateful that our paths found each other. ❤️✨”
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- FINAL MESSAGE -->
+
+        <p class="final-message">
+            “Every picture holds a little piece of your beautiful journey…<br>
+            and I feel lucky to be a part of it now. ❤️”
+        </p>
+
+        <!-- LAST BUTTON -->
+
+        <button class="next-button" onclick="location.href='third.html'">
+            From My Heart… ❤️
+        </button>
+
+    </div>
+
+    <script>
+        // Page loaded
+        window.addEventListener("load", function () {
+            console.log("Welcome to Our Memories 💗");
+        });
+
+        // Select all memory images
+        const memoryImages = document.querySelectorAll(".memory img");
+
+        // Add click event to every memory image
+        memoryImages.forEach(function (image) {
+            image.addEventListener("click", function () {
+                this.classList.toggle("enlarged");
+            });
+        });
+    </script>
+
+</body>
+</html>

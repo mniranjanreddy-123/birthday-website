@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .dashboard {
+            width: 90%;
+            max-width: 800px;
+            margin: 30px auto;
+            background-color: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px #cccccc;
+        }
+
+        .info-box {
+            background-color: #eef2ff;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 8px;
+        }
+
+        .info-box h2 {
+            color: #444;
+        }
+
+        p {
+            margin: 12px 0;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            color: white;
+            background-color: #e63946;
+            padding: 10px 18px;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🎂 Birthday Admin Dashboard ❤️</h1>
+        <p style="text-align: center;">
+            Manage birthday website details and responses
+        </p>
+
+    <div class="dashboard">
+
+        <!-- User Details -->
+        <div class="info-box">
+            <h2>User Details</h2>
+
+            <div id="userDetails">
+                <p>Loading user details...</p>
+            </div>
+        </div>
+
+        <!-- Proposal Responses -->
+        <div class="info-box">
+            <h2>Proposal Responses</h2>
+
+            <div id="responseList">
+                <p>Loading responses...</p>
+            </div>
+        </div>
+        <button onclick="location.reload()">
+            🔄 Refresh Dashboard
+        </button>
+
+        <a href="/logout">Logout</a>
+
+    </div>
+
+    <script>
+        // Load user details
+        fetch("/api/user-details")
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (details) {
+
+                const userDetails = document.getElementById("userDetails");
+
+                userDetails.innerHTML = "";
+
+                if (details.length === 0) {
+                    userDetails.innerHTML =
+                        "<p>No user details received yet.</p>";
+                } else {
+
+                    details.forEach(function (user) {
+
+                        const name = document.createElement("p");
+                        name.textContent = "Name: " + user.name;
+
+                        const nickname = document.createElement("p");
+                        nickname.textContent =
+                            "Nick Name: " + user.nickname;
+
+                        const dob = document.createElement("p");
+                        dob.textContent =
+                            "Date Of Birth: " + user.dob;
+
+                        const favouriteColour =
+                            document.createElement("p");
+
+                        favouriteColour.textContent =
+                            "Favourite Colour: " +
+                            user.favouriteColour;
+
+                        const myFavouriteColour =
+                            document.createElement("p");
+
+                        myFavouriteColour.textContent =
+                            "My Favourite Colour: " +
+                            user.myFavouriteColour;
+
+                        userDetails.appendChild(name);
+                        userDetails.appendChild(nickname);
+                        userDetails.appendChild(dob);
+                        userDetails.appendChild(favouriteColour);
+                        userDetails.appendChild(myFavouriteColour);
+                    });
+                }
+            })
+            .catch(function () {
+                document.getElementById("userDetails").innerHTML =
+                    "<p>Could not load user details.</p>";
+            });
+
+
+        // Load proposal responses
+        fetch("/api/responses")
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (responses) {
+
+                const responseList =
+                    document.getElementById("responseList");
+
+                responseList.innerHTML = "";
+
+                if (responses.length === 0) {
+                    responseList.innerHTML =
+                        "<p>No responses received yet.</p>";
+                } else {
+
+                    responses.forEach(function (item) {
+
+                        const paragraph =
+                            document.createElement("p");
+
+                        paragraph.textContent =
+                            "Response: " + item.response +
+                            " | Time: " + item.time;
+
+                        responseList.appendChild(paragraph);
+                    });
+                }
+            })
+            .catch(function () {
+                document.getElementById("responseList").innerHTML =
+                    "<p>Could not load responses.</p>";
+            });
+                    setInterval(function () {
+            location.reload();
+        }, 5000);
+    </script>
+
+</body>
+
+</html>

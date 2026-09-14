@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>First Page</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        /* MAIN BACKGROUND */
+        .background {
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            padding: 30px 20px;
+        }
+
+        .background-img {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* HEADING */
+        .pic h1 {
+            text-align: center;
+            width: fit-content;
+            max-width: 90%;
+            margin: 0 auto;
+            border: 3px solid rgb(220, 226, 226);
+            padding: 10px 20px;
+            border-radius: 20px;
+            color: rgb(63, 21, 231);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* DATE */
+        .date {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: larger;
+            border: 3px solid rgb(25, 28, 24);
+            padding: 10px 20px;
+            border-radius: 15px;
+            color: whitesmoke;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        /* PHOTO */
+        .pic {
+            text-align: center;
+            padding-top: 30px;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 40%;
+
+            box-shadow:
+                0 0 15px white,
+                0 0 30px rgb(75, 45, 225);
+
+            transition:
+                transform 0.5s ease,
+                box-shadow 0.5s ease;
+
+            margin-top: 50px;
+        }
+
+        /* IMAGE HOVER */
+        .profile-img:hover {
+            transform: scale(1.2);
+
+            box-shadow:
+                0 0 25px white,
+                0 0 45px rgb(75, 45, 225);
+        }
+
+        /* PARAGRAPH BOX */
+        .description {
+            width: min(700px, 90%);
+            margin: 30px auto;
+            padding: 20px;
+            border: 3px solid white;
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+            background: rgba(0, 0, 0, 0.25);
+            box-shadow: 0 0 15px white;
+        }
+
+        .description p {
+            margin: 0;
+            line-height: 1.6;
+            font-size: 18px;
+        }
+
+        /* LETTER */
+        .letter {
+            width: 220px;
+            height: 140px;
+            margin: 40px auto 20px;
+            position: relative;
+            cursor: pointer;
+            background: #fff;
+            border: 3px solid pink;
+            border-radius: 10px;
+            box-shadow: 0 0 15px pink;
+            transition: transform 0.3s ease;
+        }
+
+        /* LETTER HOVER */
+        .letter:hover {
+            transform: scale(1.05);
+        }
+
+        /* LETTER FLAP */
+        .flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background: pink;
+
+            clip-path: polygon(
+                0 0,
+                100% 0,
+                50% 100%
+            );
+
+            transform-origin: top;
+            transition: transform 0.6s ease;
+            z-index: 2;
+        }
+
+        /* LETTER MESSAGE */
+        .letter-message {
+            position: absolute;
+            top: 35px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: rgb(220, 20, 100);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        /* OPEN LETTER */
+        .letter.open .flap {
+            transform: rotateX(180deg);
+        }
+
+        .letter.open .letter-message {
+            opacity: 1;
+        }
+
+        /* BUTTON */
+        .next-button {
+            display: block;
+            width: fit-content;
+            margin: 30px auto;
+            padding: 12px 25px;
+
+            border: 2px solid white;
+            border-radius: 30px;
+
+            background: rgb(220, 20, 100);
+            color: white;
+
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease,
+                background 0.3s ease;
+        }
+
+        /* BUTTON HOVER */
+        .next-button:hover {
+            transform: scale(1.1);
+            background: rgb(180, 10, 80);
+
+            box-shadow:
+                0 0 15px pink,
+                0 0 30px white;
+        }
+
+        /* MOBILE RESPONSIVE DESIGN */
+        @media (max-width: 600px) {
+
+            .background {
+                padding: 20px 10px;
+            }
+
+            .pic h1 {
+                font-size: 22px;
+                padding: 8px 12px;
+                margin-top: 45px;
+            }
+
+            .date {
+                position: static;
+                width: fit-content;
+                margin: 15px auto;
+                font-size: 14px;
+                padding: 7px 12px;
+            }
+
+            .pic {
+                padding-top: 10px;
+            }
+
+            .profile-img {
+                width: 160px;
+                height: 160px;
+            }
+
+            /* TOUCH EFFECT ON PHONES */
+            .profile-img:active {
+                transform: scale(1.15);
+
+                box-shadow:
+                    0 0 25px white,
+                    0 0 40px rgb(75, 45, 225);
+            }
+
+            .description {
+                width: 94%;
+                padding: 15px;
+                margin-top: 25px;
+            }
+
+            .description p {
+                font-size: 16px;
+            }
+
+            .letter {
+                width: 190px;
+                height: 120px;
+            }
+
+            .letter-message {
+                font-size: 20px;
+            }
+
+            .next-button {
+                font-size: 15px;
+                padding: 10px 20px;
+                margin: 30px auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="background">
+
+        <!-- BACKGROUND IMAGE -->
+        <img
+            class="background-img"
+            src="bsnl.jpeg"
+            alt="background"
+        >
+
+        <div class="pic">
+
+            <!-- HEADING -->
+            <h1>
+                “For the Most Special Person in My Life 💝”
+            </h1>
+
+            <!-- DATE -->
+            <p class="date">
+                12 October 2007
+            </p>
+
+            <!-- YOUR IMAGE -->
+            <img
+                class="profile-img"
+                src="niru.jpg"
+                alt="photo"
+            >
+
+        </div>
+
+        <!-- PARAGRAPH IN SEPARATE DIV -->
+        <div class="description">
+            <p>
+                You are someone truly special to me,
+                and today I just want to make you smile.
+                ❤️ This little surprise is made especially
+                for you. ✨
+            </p>
+        </div>
+
+        <!-- LETTER -->
+        <div
+            class="letter"
+            onclick="this.classList.toggle('open')"
+        >
+            <div class="flap"></div>
+
+            <div class="letter-message">
+                I Love You ❤️
+            </div>
+        </div>
+
+        <!-- BUTTON -->
+        <a href="second.html" class="next-button">
+            A Little More......💓
+        </a>
+
+    </div>
+
+    <script>
+        // Welcome message when the page loads
+        window.addEventListener("load", function () {
+            console.log("Welcome to the special page ❤️");
+        });
+
+        // Next button
+        const nextButton = document.querySelector(".next-button");
+
+        nextButton.addEventListener("click", function () {
+            window.location.href = "second.html";
+        });
+    </script>
+
+</body>
+
+</html>

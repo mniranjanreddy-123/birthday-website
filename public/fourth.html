@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>fourth</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Georgia, "Times New Roman", serif;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* BACKGROUND SECTION */
+        .background {
+            min-height: 100vh;
+            position: relative;
+            padding: 30px 15px;
+            overflow: hidden;
+        }
+
+        /* BACKGROUND IMAGE */
+        .background > img:first-child {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        /* DARK OVERLAY */
+        .background::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: -1;
+        }
+
+        /* MAIN CONTENT BOX */
+        .second {
+            width: min(900px, 95%);
+            margin: 0 auto;
+            padding: 25px;
+            text-align: center;
+
+            border: 3px solid white;
+            border-radius: 25px;
+            background: rgba(255, 105, 180, 0.15);
+            box-shadow:
+                0 0 15px pink,
+                0 0 30px rgba(255, 255, 255, 0.4);
+
+            animation: appear 1.5s ease;
+        }
+
+        /* HEADINGS */
+        h1 {
+            color: #ffd1e8;
+            font-size: 32px;
+            line-height: 1.4;
+            text-shadow:
+                0 0 10px #ff69b4,
+                0 0 20px #ff1493;
+        }
+
+        h2 {
+            margin-top: 35px;
+            color: #ffe1ef;
+            font-size: 27px;
+            text-shadow: 0 0 10px #ff69b4;
+        }
+
+        /* DATE */
+        .date {
+            display: inline-block;
+            margin: 15px auto;
+            padding: 8px 18px;
+
+            border: 2px solid white;
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.3);
+
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* PARAGRAPHS */
+        p {
+            font-size: 18px;
+            line-height: 1.8;
+            text-align: center;
+            white-space: normal;
+        }
+
+        /* CAKE IMAGE */
+        .second img[alt="cake"] {
+            display: block;
+            width: 200px;
+            max-width: 80%;
+            height: auto;
+
+            margin: 25px auto;
+            border: 4px solid white;
+            border-radius: 20px;
+
+            box-shadow:
+                0 0 15px pink,
+                0 0 30px rgba(255, 255, 255, 0.7);
+
+            cursor: pointer;
+
+            transition:
+                transform 0.4s ease,
+                box-shadow 0.4s ease,
+                border-radius 0.4s ease;
+        }
+
+        /* CAKE HOVER EFFECT */
+        .second img[alt="cake"]:hover {
+            transform: scale(1.15) rotate(3deg);
+
+            border-radius: 50%;
+
+            box-shadow:
+                0 0 20px white,
+                0 0 40px #ff69b4,
+                0 0 60px pink;
+        }
+
+        /* CAKE TOUCH EFFECT ON MOBILE */
+        .second img[alt="cake"]:active {
+            transform: scale(1.08);
+        }
+
+        /* FINAL HEADING */
+        .second h1:last-child {
+            margin-top: 45px;
+            color: #fff0f7;
+            font-size: 28px;
+        }
+
+        /* FLOATING HEARTS */
+        .heart {
+            position: fixed;
+            bottom: -30px;
+            color: pink;
+            font-size: 25px;
+            pointer-events: none;
+            animation: floatHeart 6s linear forwards;
+            z-index: 5;
+        }
+
+        /* CONTENT ANIMATION */
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes floatHeart {
+            0% {
+                opacity: 0;
+                transform: translateY(0) rotate(0deg);
+            }
+
+            15% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-110vh) rotate(360deg);
+            }
+        }
+
+        /* MOBILE RESPONSIVE DESIGN */
+        @media (max-width: 600px) {
+
+            .background {
+                padding: 20px 8px;
+            }
+
+            .second {
+                width: 100%;
+                padding: 15px 12px;
+                border-radius: 18px;
+            }
+
+            h1 {
+                font-size: 23px;
+            }
+
+            h2 {
+                font-size: 22px;
+                margin-top: 28px;
+            }
+
+            .date {
+                font-size: 14px;
+                padding: 7px 13px;
+            }
+
+            p {
+                font-size: 16px;
+                line-height: 1.7;
+            }
+
+            .second img[alt="cake"] {
+                width: 170px;
+                margin: 20px auto;
+            }
+
+            .second h1:last-child {
+                font-size: 23px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="background">
+
+        <img src="party.jpeg" alt="kin">
+
+        <div class="second">
+
+            <h1>
+                “Happy Birthday to the One Who Holds My Heart ❤️🎂”
+            </h1>
+
+            <p class="date">
+                12 october 2007
+            </p>
+
+            <img src="gift.jpeg" alt="cake" width="200">
+
+            <h2>
+                “Your Special Day ❤️🎂”
+            </h2>
+
+            <p>
+                Today is not just another day… it’s the day someone truly special to me was born.
+                <br>
+                ❤️🎂 I feel lucky to know you, to have shared so many beautiful memories with you,
+                <br>
+                and to be a small part of your journey. On your special day, I just want you to know
+                how precious you are to me. 🥹❤️
+            </p>
+
+            <h2>
+                “My Wishes for You ❤️”
+            </h2>
+
+            <p>
+                Happy Birthday, my love. ❤️🎂
+
+                <br><br>
+
+                On your special day, I wish you a life filled with happiness, peace, success,
+                and countless beautiful moments. May every dream in your heart slowly become a
+                reality, and may you always have reasons to smile. I hope this new year of your
+                life brings you everything you deserve and more.
+
+                <br><br>
+
+                And no matter how much life changes, I hope you always remember that there is
+                someone who will always be grateful for your presence in his life. Thank you for
+                being you, for all the memories, the smiles, and the little moments that mean so
+                much to me. You are truly special to me, and I hope this birthday becomes one of
+                the most beautiful memories of your life. ❤️🥹
+
+                <br><br>
+
+                Happy Birthday once again, my beautiful girl. May your smile always stay as
+                beautiful as it is today. ❤️🎂✨
+            </p>
+
+            <h2>
+                “Forever in My Heart ❤️”
+            </h2>
+
+            <p>
+                “No matter where life takes us,
+                <br>
+                I’ll always be grateful that you became a part of my story.
+                <br>
+                You are one of the most beautiful chapters of my life,
+                <br>
+                and I hope we get to create many more memories together. ❤️”
+                <br>
+                "Happy Birthday, My Love 💗"
+            </p>
+
+            <h1>
+                “Always yours, with all my heart. ❤️”
+            </h1>
+
+        </div>
+    </div>
+
+    <script>
+        // CREATE FLOATING HEARTS
+        function createHeart() {
+            const heart = document.createElement("div");
+
+            heart.className = "heart";
+            heart.textContent = "❤️";
+
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = (18 + Math.random() * 20) + "px";
+            heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+
+            document.body.appendChild(heart);
+
+            setTimeout(function () {
+                heart.remove();
+            }, 8000);
+        }
+
+        // Create hearts continuously
+        setInterval(createHeart, 900);
+    </script>
+
+</body>
+
+</html>
