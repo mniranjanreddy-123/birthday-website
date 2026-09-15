@@ -4,7 +4,7 @@ const path = require("path");
 const session = require("express-session");
 
 const app = express();
-mongoose.connect("mongodb://127.0.0.1:27017/birthdayDB")
+mongoose.connect(process.env.MONGODB_URI)
     .then(() => console.log("MongoDB connected successfully"))
     .catch((error) => console.log("MongoDB connection error:", error));
 const PORT = 3000;
