@@ -14,7 +14,7 @@
     "express": "^5.2.1",
     "express-session": "^1.19.0",
     "mongoose": "^9.10.0",
-    "nodemailer": "^10.0.9"
-     "dotenv": "^16.4.7"
+    "nodemailer": "^10.0.9",
+    "dotenv": "^16.4.7"
   }
 }
